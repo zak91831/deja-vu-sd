@@ -1,0 +1,72 @@
+# Default configuration for Deja Vu
+
+# Core settings
+core:
+  # Maximum number of concurrent targets
+  max_targets: 25
+  
+  # Maximum number of concurrent templates per target
+  max_templates: 25
+  
+  # Rate limiting (requests per second)
+  rate_limit: 150
+  
+  # Output format (json, yaml, cli)
+  output_format: "cli"
+  
+  # Template directory
+  template_dir: "./templates"
+
+# Feature modules
+features:
+  # Time Travel module settings
+  timetravel:
+    enabled: false
+    wayback_machine:
+      enabled: true
+      max_snapshots: 10
+      max_age_days: 365
+    cert_history:
+      enabled: true
+      max_certs: 5
+    
+  # Persona module settings
+  persona:
+    enabled: false
+    default_persona: "standard"
+    personas:
+      - name: "standard"
+        delay: "0ms-100ms"
+        rate_limit: 150
+        user_agent: "Deja Vu Scanner v1.0"
+      - name: "stealthy"
+        delay: "1s-3s"
+        rate_limit: 10
+        user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      - name: "aggressive"
+        delay: "0ms-10ms"
+        rate_limit: 500
+        user_agent: "Deja Vu Scanner v1.0 (Fast Mode)"
+  
+  # Adaptive Learning module settings
+  adaptive:
+    enabled: false
+    tech_detection:
+      enabled: true
+    template_prioritization:
+      enabled: true
+    feedback_collection:
+      enabled: true
+
+# Logging settings
+logging:
+  level: "info"  # debug, info, warn, error
+  file: ""       # Empty for stdout
+  format: "text" # text, json
+
+# HTTP settings
+http:
+  timeout: 10
+  follow_redirects: true
+  max_redirects: 10
+  disable_cookie_reuse: false
